@@ -6,21 +6,215 @@ Metasploit for reconnaissance in pentesting
 
 To get introduced to Metasploit Framework and to  perform reconnaissance  in pentesting .
 
-## DESIGN STEPS:
+---
 
-### Step 1:
+# DESIGN STEPS
 
-Install kali linux either in partition or virtual box or in live mode
+## Step 1
+Install Kali Linux either in a partition, VirtualBox, or live mode.
 
-### Step 2:
+## Step 2
+Investigate the various categories of Metasploit tools and modules.
 
-Investigate on the various categories of tools as follows:
+## Step 3
+Open the terminal and execute Kali Linux and Metasploit commands.
 
-### Step 3:
+---
 
-Open terminal and try execute some kali linux commands
+# EXECUTION STEPS AND USAGE
 
-## EXECUTION STEPS AND ITS OUTPUT:
+## 1. Find the Attacker System IP Address
+Open the Kali Linux terminal and identify the IP address of the attacker machine.
+
+```bash
+ifconfig
+```
+
+Or:
+
+```bash
+ip a
+```
+
+### Usage
+This command helps identify the local machine IP address connected to the network.
+
+---
+
+## 2. Start Metasploit Framework
+Launch the Metasploit console.
+
+```bash
+msfconsole
+```
+
+### Usage
+Loads the Metasploit Framework environment used for scanning, reconnaissance, and exploitation.
+
+---
+
+## 3. Display Available Commands
+Inside `msfconsole`, type:
+
+```bash
+help
+```
+
+Or:
+
+```bash
+?
+```
+
+### Usage
+Displays all available Metasploit commands and their functionalities.
+
+---
+
+## 4. Perform TCP Port Scanning
+Scan the local network for open ports between 1 and 1000.
+
+```bash
+nmap -sT 192.168.181.0/24 -p1-1000
+```
+
+### Usage
+Performs a TCP connect scan to identify active systems and open ports in the network.
+
+---
+
+## 5. Scan and Save Results into Metasploit Database
+Use the `db_nmap` command.
+
+```bash
+db_nmap 192.168.181.0/24
+```
+
+### Usage
+Stores scan results directly into Metasploit’s PostgreSQL database for later use during exploitation.
+
+---
+
+## 6. Access Auxiliary Scanner Modules
+Navigate to the Metasploit auxiliary modules directory.
+
+```bash
+cd /usr/share/metasploit-framework/modules/auxiliary
+```
+
+List the available modules:
+
+```bash
+ls -l
+```
+
+### Usage
+Auxiliary modules contain scanners and enumeration tools for services like FTP, SMB, HTTP, and MySQL.
+
+---
+
+## 7. Search for Exploit Modules
+Search for Microsoft-related exploit modules.
+
+```bash
+search name:Microsoft type:exploit
+```
+
+### Usage
+Search helps locate exploits, scanners, or auxiliary modules related to specific platforms or services.
+
+---
+
+# MYSQL ENUMERATION
+
+## 8. Start PostgreSQL and Initialize Database
+Before using database features, start PostgreSQL and initialize the Metasploit database.
+
+```bash
+systemctl start postgresql
+```
+
+```bash
+msfdb init
+```
+
+### Usage
+Enables Metasploit database support for storing scan and enumeration results.
+
+---
+
+## 9. Scan MySQL Service
+Scan port 3306 on the target machine.
+
+```bash
+db_nmap -sV -sC -p 3306 <target-ip>
+```
+
+### Usage
+Detects MySQL service version and runs default NSE scripts for enumeration.
+
+---
+
+## 10. Search for MySQL Auxiliary Modules
+
+```bash
+search type:auxiliary mysql
+```
+
+### Usage
+Lists all MySQL-related auxiliary modules available in Metasploit.
+
+---
+
+## 11. Use MySQL Version Scanner Module
+
+```bash
+use auxiliary/scanner/mysql/mysql_version
+```
+
+Or:
+
+```bash
+use 11
+```
+
+### Usage
+Loads the MySQL version scanner module to identify MySQL server details.
+
+---
+
+## 12. Set Target IP Address
+
+```bash
+set RHOSTS <target-ip>
+```
+
+### Usage
+Specifies the target machine IP address for scanning.
+
+---
+
+## 13. Configure Password Wordlist
+
+```bash
+set PASS_FILE /usr/share/wordlists/rockyou.txt
+```
+
+### Usage
+Sets the password dictionary file used for brute-force login attempts.
+
+---
+
+## 14. Enable Blank Password Checking
+
+```bash
+set BLANK_PASSWORDS true
+```
+
+### Usage
+Checks whether the MySQL root account has an empty password configured.
+
+---
 
 
 ## OUTPUT:
