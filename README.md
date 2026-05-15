@@ -1,6 +1,4 @@
 # Metasploit-for-reconnaissance
-# Metasploit
-Metasploit for reconnaissance in pentesting
 
 # AIM:
 
