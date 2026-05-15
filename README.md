@@ -22,96 +22,37 @@ Open terminal and try execute some kali linux commands
 
 ## EXECUTION STEPS AND ITS OUTPUT:
 
-Find out the ip address of the attackers system
-## OUTPUT:
-
-
-Invoke msfconsole:
-## OUTPUT:
-
-
-Type help or a question mark "?" to see the list of all available commands you can use inside msfconsole.
-
-
-
-
-Port Scanning:
-Following command is executed for scanning the systems on our local area network with a TCP scan (-sT) looking for open ports between 1 and 1000 (-p1-1000).
-msf >  nmap -sT 192.168.1810/24 -p1-1000  (Replace with appropriate IP Address)
-## OUTPUT:
-
-step4:
-use the db-nmap command to scan and save the results into Metasploit's postgresql attached database. In that way, you can use those results in the exploitation stage later.
-
-scan the targets with the command db_nmap as follows.
-msf > db_nmap 192.168.181.0/24
-## OUTPUT:
-
-
-
-Metasploit has a multitude of scanning modules built in. If we open another terminal, we can navigate to Metasploit's auxiliary modules and list all the scanner modules.
-cd /usr/share /metasploit-framework/modules/auxiliary
-kali > ls -l
-## OUTPUT:
-
-
-
-Search is a powerful command in Metasploit that you can use to find what you want to locate. 
-msf >search name:Microsoft type:exploit
-## OUTPUT:
-
-
-
-The info command provides information regarding a module or platform,
-
-Before beginning, set up the Metasploit database by starting the PostgreSQL server and initialize msfconsole database as follows:
-systemctl start postgresql
-msfdb init
-## OUTPUT:
-
-
-
-
-## MYSQL ENUMERATION
-Find the IP address of the Metasploitable machine first. Then, use the db_nmap command in msfconsole with Nmap flags to scan the MySQL database at 3306 port.
-db_nmap -sV -sC -p 3306 <metasploitable_ip_address>
 
 ## OUTPUT:
 
-Use the search option to look for an auxiliary module to scan and enumerate the MySQL database.
-search type:auxiliary mysql
+<img width="748" height="438" alt="image" src="https://github.com/user-attachments/assets/eed97391-cac9-4291-a37a-42101528dc29" />
+
+<img width="632" height="291" alt="image" src="https://github.com/user-attachments/assets/435e582b-461b-4f7a-aa48-93ba9ed597d9" />
+
+<img width="612" height="469" alt="image" src="https://github.com/user-attachments/assets/3402b1bc-b40a-4175-b559-0d8dcccd952c" />
+
+<img width="856" height="534" alt="image" src="https://github.com/user-attachments/assets/60941634-9f32-4aa5-a49a-4e4901b93a90" />
+
+
 ## OUTPUT:
 
+<img width="739" height="478" alt="image" src="https://github.com/user-attachments/assets/9bb23b6d-006e-4bb3-8206-a4a982b91339" />
 
-use the auxiliary/scanner/mysql/mysql_version module by typing the module name or associated number to scan MySQL version details.
-use 11
-Or:
-use auxiliary/scanner/mysql/mysql_version
-## OUTPUT:
+<img width="954" height="912" alt="image" src="https://github.com/user-attachments/assets/4dd1a00a-9432-445b-9d58-ed9d69c0a97a" />
 
+<img width="938" height="890" alt="image" src="https://github.com/user-attachments/assets/fd299f83-e59c-434d-9fdb-67d40bb42ff2" />
 
+<img width="930" height="601" alt="image" src="https://github.com/user-attachments/assets/964d523c-0d08-4743-aa78-ec588543cd7f" />
 
+<img width="768" height="150" alt="image" src="https://github.com/user-attachments/assets/39a04b19-af3f-47d7-bb50-0ad3a72b9b1b" />
 
-Use the set rhosts command to set the parameter and run the module, as follows:
-## OUTPUT:
+<img width="939" height="710" alt="image" src="https://github.com/user-attachments/assets/b51c938d-0bf1-40e1-9d33-7cb0f0fc4c0d" />
 
+<img width="870" height="507" alt="image" src="https://github.com/user-attachments/assets/3c864c5f-9327-41db-aec1-cff476e5c71f" />
 
+<img width="930" height="570" alt="image" src="https://github.com/user-attachments/assets/fe5d2015-fe92-4910-8597-d94667858bae" />
 
-After scanning, you can also brute force MySQL root account via Metasploit's auxiliary(scanner/mysql/mysql_login) module.
-## OUTPUT:
-
-
-
-
-set the PASS_FILE parameter to the wordlist path available inside /usr/share/wordlists:
-set PASS_FILE /usr/share/wordlistss/rockyou.txt
-Then, specify the IP address of the target machine with the RHOSTS command.
-set RHOSTS <metasploitable-ip-address>
-Set BLANK_PASSWORDS to true in case there is no password set for the root account.
-set BLANK_PASSWORDS true
-## OUTPUT:
-
-
+<img width="810" height="180" alt="image" src="https://github.com/user-attachments/assets/a33f7297-ec68-4536-846e-d172c647da5a" />
 
 
 
